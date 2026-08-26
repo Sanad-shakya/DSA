@@ -10,28 +10,19 @@ class Solution {
             return;
         }
 
-        for (int i = 0; i < nums.size(); i++) {
+       for (int i = 0; i < nums.size(); i++) {
 
-            // Duplicate choice skip
-            if (i > 0 && nums.get(i).equals(nums.get(i - 1))) {
-                continue;
-            }
+    if (i > 0 && nums.get(i).equals(nums.get(i - 1))) {
+        continue;
+    }
 
-            // Output
-            List<Integer> op = new ArrayList<>(temp);
-            op.add(nums.get(i));
+    List<Integer> ip = new ArrayList<>(nums);
+    List<Integer> op = new ArrayList<>(temp);
 
-            // Input = everything except chosen element
-            List<Integer> ip = new ArrayList<>();
+    op.add(ip.remove(i));
 
-            for (int j = 0; j < nums.size(); j++) {
-                if (j != i) {
-                    ip.add(nums.get(j));
-                }
-            }
-
-            fun(ip, op);
-        }
+    fun(ip, op);
+}
     }
 
     public List<List<Integer>> permuteUnique(int[] nums) {
