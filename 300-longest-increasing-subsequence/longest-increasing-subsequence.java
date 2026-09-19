@@ -1,37 +1,26 @@
 class Solution {
 
-int [][] dp = new int [3000][3000];
-
- int fun( int []nums , int i , int p){
-
- if( i >=  nums.length){
-    return 0;
- }
-
-if( dp[i][p+1] != - 1){
-    return dp[i][p+1];
-}
-
-  int a = 0;
-if( p == -1 || nums[i] > nums[p]){
-
-   a = 1 + fun( nums , i+1 , i);
-
-} 
-    
-    int b = fun( nums , i + 1 , p);
-
- return dp[i] [p+1] = Math.max(a,b);
- }
     public int lengthOfLIS(int[] nums) {
+        
+    int n = nums.length;
 
+    List<Integer> ans = new ArrayList<>();
+    ans.add(nums[0]);
 
-     for (int i = 0; i < dp.length; i++) {
-    for (int j = 0; j < dp[i].length; j++) {
-        dp[i][j] = -1;
+    for( int i = 1 ; i<n ; i++){
+
+        if(ans.get(ans.size()-1) < nums[i]){
+            ans.add(nums[i]);
+        }else{
+            int j = 0;
+            while(ans.get(j) < nums[i]){
+                j++;
+            }
+            ans.set(j , nums[i]);
+        }
     }
-}
 
-       return fun( nums , 0 , -1);
+
+return ans.size();
     }
 }
