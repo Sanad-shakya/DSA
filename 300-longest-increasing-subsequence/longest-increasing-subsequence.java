@@ -11,16 +11,28 @@ class Solution {
 
         if(ans.get(ans.size()-1) < nums[i]){
             ans.add(nums[i]);
-        }else{
-            int j = 0;
-            while(ans.get(j) < nums[i]){
-                j++;
-            }
-            ans.set(j , nums[i]);
-        }
+        }      else{
+
+                int low = 0;
+                int high = ans.size() - 1;
+
+                while (low < high) {
+
+                    int mid = low + (high - low) / 2;
+
+                    if (ans.get(mid) < nums[i]) {
+                        low = mid + 1;
+                    } 
+                    else {
+                        high = mid;
+                    }
+                }
+                   ans.set(low, nums[i]);
     }
 
 
+    }
 return ans.size();
+
     }
 }
