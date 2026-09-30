@@ -4,30 +4,40 @@ class Solution {
 
         List<String> ans = new ArrayList<>();
 
-        backtrack(n, 0, 0, "", ans);
+       solve(n, 0, 0, "", ans);
 
         return ans;
     }
 
-    void backtrack(int n, int open, int close,
+    void solve(int n, int a, int b,
                    String temp, List<String> ans) {
 
-        // All n pairs are used
+        
         if (temp.length() == 2 * n) {
             ans.add(temp);
             return;
         }
 
-        // We can add '('
-        if (open < n) {
-            backtrack(n, open + 1, close,
-                      temp + "(", ans);
-        }
+        //   int open = a ;
+        //   int closing = b;
 
-        // We can add ')' only if it is valid
-        if (close < open) {
-            backtrack(n, open, close + 1,
-                      temp + ")", ans);
+           if(a > n || b > n ){
+             return;
+           }
+
+        {
+            if( a < n ){
+           solve(n, a + 1, b,temp + "(", ans );
+            }
         }
-    }
+        {
+if( b < a ){
+           solve(n, a, b + 1 , temp + ")", ans);
 }
+        }
+        }
+        }
+        
+
+      
+    
