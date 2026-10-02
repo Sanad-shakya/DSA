@@ -18,22 +18,20 @@ class Solution {
             return;
         }
 
-        //   int open = a ;
-        //   int closing = b;
-
            if(a > n || b > n ){
              return;
            }
 
         {
-            if( a < n ){
+             if( a < n ){
            solve(n, a + 1, b,temp + "(", ans );
-            }
+             }
         }
         {
-if( b < a ){
+       if(b < a){
            solve(n, a, b + 1 , temp + ")", ans);
-}
+       }
+
         }
         }
         }
