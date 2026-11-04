@@ -1,38 +1,28 @@
 class Solution {
 
+int solve ( int i , int prev , int [] nums ,int [][] dp){
+ if( i == nums.length) return 0;
+ if( dp[i][prev + 1] !=-1) return dp[i][prev + 1];
+
+ int skip = solve(i+1 , prev , nums , dp);
+
+ int take = 0;
+
+ if( prev == - 1 || nums[i] > nums[prev])
+ take = 1 + solve(i+1 , i , nums , dp);
+
+ return dp[i][prev + 1] = Math.max(take , skip);
+}
     public int lengthOfLIS(int[] nums) {
-        
-    int n = nums.length;
 
-    List<Integer> ans = new ArrayList<>();
-    ans.add(nums[0]);
-
-    for( int i = 1 ; i<n ; i++){
-
-        if(ans.get(ans.size()-1) < nums[i]){
-            ans.add(nums[i]);
-        }      else{
-
-                int low = 0;
-                int high = ans.size() - 1;
-
-                while (low < high) {
-
-                    int mid = low + (high - low) / 2;
-
-                    if (ans.get(mid) < nums[i]) {
-                        low = mid + 1;
-                    } 
-                    else {
-                        high = mid;
-                    }
-                }
-                   ans.set(low, nums[i]);
-    }
+int n = nums.length;
 
 
-    }
-return ans.size();
+int[][] dp = new int[n][n + 1];
 
+for (int[] row : dp) {
+    Arrays.fill(row, -1);
+}
+return solve( 0, - 1 , nums , dp);
     }
 }
