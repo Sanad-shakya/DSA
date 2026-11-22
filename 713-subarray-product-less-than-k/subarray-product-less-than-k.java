@@ -6,9 +6,9 @@ class Solution {
             return 0;
         }
 
-        int pro = 1, l = 0, r = 0, count = 0;
+        int pro = 1, l = 0 , count = 0;
 
-        while (r < nums.length) {
+        for( int r = 0 ; r < nums.length ; r++) {
 
             pro = pro*nums[r];
 
@@ -18,7 +18,7 @@ class Solution {
                 l++;
             }
             count += r - l + 1;
-            r++;
+          
         }
 
         return count;
